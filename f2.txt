@@ -1,2 +1,4 @@
 How are you?
 Iam fine!
+\n Today is wednesday
+ Today is wednesday
