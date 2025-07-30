@@ -1,3 +1,6 @@
+*.log
+node_modules/
+
 f1
 api_token.txt
 api_token.txt
