@@ -1,5 +1,28 @@
-How are you?
-Iam fine!
-yes! im super
-\n Today is wednesday
- Today is wednesday
+sudo su
+sudo apt-get update
+sudo apt-get install docker.io
+git clone https://github.com/AnuragSrikrishna/23bd1a050g_labinternal.git
+cd 23bd1a050g_labinternal
+ sudo docker build -t img122.
+sudo docker run -d -p 8007:8080 img122
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ -----------------------------------------------------------------------------------------------------------------------
+ 
+ minikube start
+ kubectl create deployment first(imagename give here) --image=bhavagna2005/internalmaven1
+ kubectl get deployments
+ 
+  kubectl expose deployment first(your image name) --type=NodePort --port=8080 --target-port=8080
+  kubectl get services
+  kubectl port-forward svc/first 8122(random empty port):8080
+  open 8122 on browser to check if image is rendering
+  -------------------------------------------------------------------------------
+  NAGIOS
+  docker run -d -p 8111(random unused port number):80 jasonrivers/nagios
