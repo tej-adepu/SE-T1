@@ -1,27 +1,90 @@
+--------AWS---------
 sudo apt update
 sudo apt-get install docker.io
 sudo apt install git
 >>git clone <githuburl>
-sudo apt install nano
+ls
+cd name
+sudo su
 sudo docker build -t oles-app .
-sudo docker run -p 9090:8080 oles-app
+sudo docker run -d -p 9090:8080 oles-app
 
------------------
-minikube
-C:\Windows\System32>cd %USERPROFILE%\Downloads
-C:\Windows\System32>curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-installer.exe
-C:\Users\BHARADWAJ\Downloads>minikube-installer.exe
-add minikube to path
-then start minikube with docker
-o-->minikube start --driver=docker
+-------minikube-----
+cmd 
+>minikube start
+kubectl create deployment mynginx --image=nginx
+kubectl expose deployment mynginx --type=NodePort --port=80
+kubectl port-forward service/mynginx 8090:80
+localhost:8090
+--------nagios-------
+minikube start
+docker pull jasonrivers/nagios
+docker run -d --name nagios -p 9090:80 jasonrivers/nagios
+localhost:9090
+nagiosadmin
+nagios
+servecies->currentload
+------scripted pipeline--------
+scripted
+pipeline {
+    agent any
+    tools{
+        maven 'MAVEN_HOME'
+    }
+    stages {
+        stage('git repo & clean') {
+            steps {
+                //bat "rmdir  /s /q mavenjava"
+                bat "git clone provide your github link"
+                bat "mvn clean -f mavenjava"
+            }
+        }
+        stage('install') {
+            steps {
+                bat "mvn install -f mavenjava" #project name#
+            }
+        }
+        stage('test') {
+            steps {
+                bat "mvn test -f mavenjava"
+            }
+        }
+        stage('package') {
+            steps {
+                bat "mvn package -f mavenjava"
+            }
+        }
+    }
+}
 
-->>kubectl version --client
 
--->minikube start
--->kubectl create deployment mynginx --image=nginx
 
--->kubectl expose deployment mynginx --type=NodePort --port=80 --target-port=80
-
--->kubectl scale deployment mynginx --replicas=4
-
--->kubectl port-forward svc/mynginx 8081:80
+pipeline{
+    agent any
+    tools{
+        maven 'MAVEN_HOME'
+    }
+    stages{
+        stage("git clone and clean"){
+            steps{
+                bat "git clone https://github.com/am-varun7/23bd1a0508-test.git"
+                bat "mvn clean -f 23bd1a0508-test"
+            }
+        }
+        stage("install"){
+            steps{
+                bat 'mvn install -f 23bd1a0508-test'
+            }
+        }
+        stage("testing"){
+            steps{
+                bat 'mvn test -f 23bd1a0508-test'
+            }
+        }
+        stage("package"){
+            steps{
+                bat 'mvn package -f 23bd1a0508-test'
+            }
+        }
+    }
+}
