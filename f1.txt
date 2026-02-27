@@ -1,3 +1,5 @@
+docker run --rm -it -p 8089:80 vulnerables/web-dvwa
+
 import requests, csv, subprocess
 # source: Abuse CH
 response = requests.get(
