@@ -1,5 +1,3 @@
-Hi tejvirat
+python3 -m http.server 8080
 
-Hello one and all welcome teja
-
-hii
+sudo tcpdump -i any -w capture.pcap port 8080 
