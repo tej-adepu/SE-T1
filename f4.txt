@@ -1,3 +1,9 @@
-python3 -m http.server 8080
-
-sudo tcpdump -i any -w capture.pcap port 8080 
+def lambda_handler(event, context):
+    for record in event['Records']:
+        print("Message received from SQS:")
+        print(record['body'])
+    
+    return {
+        'statusCode': 200,
+        'body': 'Message processed successfully'
+    }
